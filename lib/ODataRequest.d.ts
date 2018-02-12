@@ -1,0 +1,12 @@
+import { AxiosRequestConfig } from "axios";
+import { ODataClient } from "./ODataClient";
+import { ODataResponse } from "./ODataResponse";
+export declare class ODataRequest<T> {
+    config: AxiosRequestConfig;
+    private client;
+    constructor(client: ODataClient, config: AxiosRequestConfig, method: string, entity: string, id?: string);
+    select(...props: string[]): ODataRequest<T>;
+    expand(...props: string[]): ODataRequest<T>;
+    filter(filter: string): ODataRequest<T>;
+    execute(): Promise<ODataResponse<T>>;
+}

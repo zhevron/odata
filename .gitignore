@@ -1,0 +1,7 @@
+.vs/
+bin/
+dist/
+node_modules/
+obj/
+npm-debug.log
+yarn-error.log

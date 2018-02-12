@@ -1,0 +1,28 @@
+{
+    "name": "odata",
+    "version": "0.1.0",
+    "description": "OData v4 client",
+    "author": "Thomas Lokshall <thomas@lokshall.no>",
+    "license": "(MIT OR Apache-2.0)",
+    "homepage": "https://github.com/zhevron/odata#readme",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/zhevron/odata.git"
+    },
+    "bugs": {
+        "url": "https://github.com/zhevron/odata/issues"
+    },
+    "dependencies": {
+        "axios": "^0.17.0"
+    },
+    "devDependencies": {
+        "tslint": "^5.9.0",
+        "typescript": "^2.7.0"
+    },
+    "scripts": {
+        "build": "tsc --project tsconfig.json",
+        "lint": "tslint src/**/*.ts* -t verbose"
+    },
+    "typings": "lib/index.d.ts",
+    "main": "lib/index.js"
+}
