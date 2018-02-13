@@ -5,7 +5,7 @@ This package wraps the [axios](https://github.com/axios/axios) http client libra
 ## Installation
 
 ```sh
-npm install https://github.com/zhevron/odata.git --save
+npm install @zhevron/odata --save
 ```
 
 ## Usage

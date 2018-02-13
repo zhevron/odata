@@ -1,5 +1,5 @@
 {
-    "name": "odata",
+    "name": "@zhevron/odata",
     "version": "0.1.0",
     "description": "OData v4 client",
     "author": "Thomas Lokshall <thomas@lokshall.no>",
