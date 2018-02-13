@@ -13,7 +13,7 @@ npm install @zhevron/odata --save
 ### Getting entities from an endpoint
 
 ```typescript
-import { ODataClient } from "odata";
+import { ODataClient } from "@zhevron/odata";
 
 interface IProduct {
     ID: number;
@@ -29,7 +29,7 @@ const products = response.entities;
 
 ### Getting a single entity from an endpoint
 ```typescript
-import { ODataClient } from "odata";
+import { ODataClient } from "@zhevron/odata";
 
 interface IProduct {
     ID: number;
