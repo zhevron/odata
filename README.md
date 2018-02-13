@@ -1,84 +1,49 @@
-# MSAL for Redux applications &middot; [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/facebook/react/blob/master/LICENSE) [![npm version](https://img.shields.io/npm/v/msal-redux.svg?style=flat)](https://www.npmjs.com/package/msal-redux)
+# TypeScript OData client
 
-This package attempts to gracefully integrate the authentication flow from [MSAL](https://github.com/AzureAD/microsoft-authentication-library-for-js) into [Redux](https://redux.js.org/) applications.
+This package wraps the [axios](https://github.com/axios/axios) http client library with methods to easily handle OData v4 endpoints.
 
 ## Installation
 
 ```sh
-npm install msal-redux --save
+npm install https://github.com/zhevron/odata.git --save
 ```
-
-*Note:* msal-redux requires `redux` and `redux-saga` as peer dependencies. Please install these in your project manually.
 
 ## Usage
 
-### TypeScript
+### Getting entities from an endpoint
 
 ```typescript
-import { IMsalState, msalReducer, msalSaga } from "msal-redux";
-import { applyMiddleware, combineReducers, compose, createStore } from "redux";
-import createSagaMiddleware from "redux-saga";
+import { ODataClient } from "odata";
 
-const clientId = "<your app id>";
-const authority = "https://login.microsoftonline.com/<your tenant id>";
-
-interface IState {
-    auth: IMsalState;
+interface IProduct {
+    ID: number;
+    Name: string;
+    Description: string;
 }
-const reducer = combineReducers<IState>({
-    auth: msalReducer
-});
 
-const sagaMiddleware = createSagaMiddleware();
-const createStoreWithMiddleware = compose(
-    applyMiddleware(sagaMiddleware),
-)(createStore);
-const store = createStoreWithMiddleware(reducer, {});
+const client = new ODataClient("http://services.odata.org/Experimental/OData/OData.svc/");
+const response = await client.get<IProduct>("Products").execute();
 
-sagaMiddleware.run(msalSaga, clientId, authority, null);
+const products = response.entities;
 ```
 
-### JavaScript
+### Getting a single entity from an endpoint
+```typescript
+import { ODataClient } from "odata";
 
-```javascript
-import { msalReducer, msalSaga } from "msal-redux";
-import { applyMiddleware, combineReducers, compose, createStore } from "redux";
-import createSagaMiddleware from "redux-saga";
+interface IProduct {
+    ID: number;
+    Name: string;
+    Description: string;
+}
 
-const clientId = "<your app id>";
-const authority = "https://login.microsoftonline.com/<your tenant id>";
+const id = 0;
 
-const reducer = combineReducers({
-    auth: msalReducer
-});
+const client = new ODataClient("http://services.odata.org/Experimental/OData/OData.svc/");
+const response = await client.get<IProduct>("Products", id).execute();
 
-const sagaMiddleware = createSagaMiddleware();
-const createStoreWithMiddleware = compose(
-    applyMiddleware(sagaMiddleware),
-)(createStore);
-const store = createStoreWithMiddleware(reducer, {});
-
-sagaMiddleware.run(msalSaga, clientId, authority, null);
+const product = response.entity;
 ```
-
-## Actions
-
-> All actions are constants exported from the main module.
-
-### Actions dispatched by the user
-
-| Constant                     | Payload                                  | Description
-|------------------------------|------------------------------------------|-------------
-| `MSAL_SIGN_IN`               | `{ popup?: boolean; scopes?: string[] }` | Dispatch this action when you want to require a user to sign in to your application.
-| `MSAL_SIGN_OUT`              | None                                     | Dispatch this action when you want a user to be signed out.
-
-### Actions dispatched by the library
-
-| Constant                     | Payload                                                 | Description
-|------------------------------|---------------------------------------------------------|-------------
-| `MSAL_ACCESS_TOKEN_RECEIVED` | `{ accessToken: string; scopes: string[]; user: User }` | Dispatched when the user is successfully signed in or the access token is refreshed.
-| `MSAL_CALLBACK_PROCESSED`    | None                                                    | Dispatched after the callback from sign-in has been processed. Useful for removing the hash from the URL.
-| `MSAL_SIGN_IN_FAILURE`       | `{ error: string }`                                     | Dispatched if a sign-in fails.
 
 ## License
 
