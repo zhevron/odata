@@ -5,6 +5,6 @@ export declare class ODataClient {
     defaultRequestConfig: AxiosRequestConfig;
     private httpClient;
     constructor(baseUrl: string, config?: AxiosRequestConfig);
-    get<T = any>(entity: string, id?: string): ODataRequest<T>;
+    get<T = any>(entity: string, id?: number | string): ODataRequest<T>;
     execute<T = any>(request: ODataRequest<T>): Promise<ODataResponse<T>>;
 }

@@ -6,7 +6,7 @@ export class ODataRequest<T> {
     public config: AxiosRequestConfig;
     private client: ODataClient;
 
-    constructor(client: ODataClient, config: AxiosRequestConfig, method: string, entity: string, id?: string) {
+    constructor(client: ODataClient, config: AxiosRequestConfig, method: string, entity: string, id?: number | string) {
         this.client = client;
         this.config = {
             ...config,

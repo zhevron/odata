@@ -14,15 +14,15 @@ export class ODataClient {
         };
     }
 
-    public get<T = any>(entity: string, id?: string): ODataRequest<T> {
+    public get<T = any>(entity: string, id?: number | string): ODataRequest<T> {
         return new ODataRequest(this, this.defaultRequestConfig, "GET", entity, id);
     }
 
-    /*post<T = any>(entity: string, id?:string): ODataRequest<T> {
+    /*post<T = any>(entity: string, id?: number | string): ODataRequest<T> {
         return new ODataRequest(this, this.defaultRequestConfig, 'POST', entity, id);
     }*/
 
-    /*put<T = any>(entity: string, id: string): ODataRequest<T> {
+    /*put<T = any>(entity: string, id: number | string): ODataRequest<T> {
         return new ODataRequest(this, this.defaultRequestConfig, 'PUT', entity, id);
     }*/
 
