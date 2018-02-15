@@ -1,19 +1,16 @@
-import axios, { AxiosInstance, AxiosRequestConfig, CancelTokenSource } from "axios";
+import axios, { AxiosInstance, AxiosRequestConfig } from "axios";
 import { ODataRequest } from "./ODataRequest";
 import { ODataResponse } from "./ODataResponse";
 
 export class ODataClient {
     public defaultRequestConfig: AxiosRequestConfig;
-    private cancelTokenSource: CancelTokenSource;
     private httpClient: AxiosInstance;
 
     constructor(baseUrl: string, config?: AxiosRequestConfig) {
-        this.cancelTokenSource = axios.CancelToken.source();
         this.httpClient = axios.create();
         this.defaultRequestConfig = {
             ...config,
             baseURL: baseUrl,
-            cancelToken: this.cancelTokenSource.token,
         };
     }
 
@@ -36,10 +33,5 @@ export class ODataClient {
         } catch (error) {
             throw error;
         }
-    }
-
-    public cancelAllRequests(message?: string): void {
-        this.cancelTokenSource.cancel(message);
-        this.cancelTokenSource = axios.CancelToken.source();
     }
 }

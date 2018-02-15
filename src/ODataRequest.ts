@@ -1,16 +1,19 @@
-import { AxiosRequestConfig } from "axios";
+import axios, { AxiosRequestConfig, CancelTokenSource } from "axios";
 import { cloneDeep } from "lodash";
 import { ODataClient } from "./ODataClient";
 import { ODataResponse } from "./ODataResponse";
 
 export class ODataRequest<T> {
     public config: AxiosRequestConfig;
+    private cancelTokenSource: CancelTokenSource;
     private client: ODataClient;
 
     constructor(client: ODataClient, config: AxiosRequestConfig, method: string, entity: string, id?: number | string) {
+        this.cancelTokenSource = axios.CancelToken.source();
         this.client = client;
         this.config = {
             ...config,
+            cancelToken: this.cancelTokenSource.token,
             method,
             params: {},
             url: entity,
@@ -47,5 +50,9 @@ export class ODataRequest<T> {
         } catch (error) {
             throw error;
         }
+    }
+
+    public cancel(message?: string): void {
+        this.cancelTokenSource.cancel(message);
     }
 }
