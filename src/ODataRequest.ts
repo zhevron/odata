@@ -25,7 +25,10 @@ export class ODataRequest<T> {
 
     public clone(): ODataRequest<T> {
         const request = new ODataRequest<T>(this.client, null, null, null);
-        request.config = cloneDeep(this.config);
+        request.config = {
+            ...cloneDeep(this.config),
+            cancelToken: request.cancelTokenSource.token,
+        };
         return request;
     }
 
