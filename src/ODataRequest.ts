@@ -1,4 +1,5 @@
 import { AxiosRequestConfig } from "axios";
+import { cloneDeep } from "lodash";
 import { ODataClient } from "./ODataClient";
 import { ODataResponse } from "./ODataResponse";
 
@@ -21,7 +22,7 @@ export class ODataRequest<T> {
 
     public clone(): ODataRequest<T> {
         const request = new ODataRequest<T>(this.client, null, null, null);
-        request.config = { ...this.config };
+        request.config = cloneDeep(this.config);
         return request;
     }
 

@@ -1,6 +1,6 @@
 {
     "name": "@zhevron/odata",
-    "version": "0.2.0",
+    "version": "0.2.1",
     "description": "OData v4 client",
     "author": "Thomas Lokshall <thomas@lokshall.no>",
     "license": "(MIT OR Apache-2.0)",
@@ -13,9 +13,11 @@
         "url": "https://github.com/zhevron/odata/issues"
     },
     "dependencies": {
-        "axios": "^0.17.0"
+        "axios": "^0.17.0",
+        "lodash": "^4.17.0"
     },
     "devDependencies": {
+        "@types/lodash": "^4.14.0",
         "tslint": "^5.9.0",
         "typescript": "^2.7.0"
     },
