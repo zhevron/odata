@@ -19,6 +19,12 @@ export class ODataRequest<T> {
         }
     }
 
+    public clone(): ODataRequest<T> {
+        const request = new ODataRequest<T>(this.client, null, null, null);
+        request.config = { ...this.config };
+        return request;
+    }
+
     public select(...props: string[]): ODataRequest<T> {
         this.config.params.$select = props.join(",");
         return this;

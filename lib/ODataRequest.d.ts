@@ -5,6 +5,7 @@ export declare class ODataRequest<T> {
     config: AxiosRequestConfig;
     private client;
     constructor(client: ODataClient, config: AxiosRequestConfig, method: string, entity: string, id?: number | string);
+    clone(): ODataRequest<T>;
     select(...props: string[]): ODataRequest<T>;
     expand(...props: string[]): ODataRequest<T>;
     filter(filter: string): ODataRequest<T>;
