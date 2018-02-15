@@ -40,5 +40,6 @@ export class ODataClient {
 
     public cancelAllRequests(message?: string): void {
         this.cancelTokenSource.cancel(message);
+        this.cancelTokenSource = axios.CancelToken.source();
     }
 }
