@@ -1,6 +1,6 @@
 {
     "name": "@zhevron/odata",
-    "version": "0.4.1",
+    "version": "0.4.2",
     "description": "OData v4 client",
     "author": "Thomas Lokshall <thomas@lokshall.no>",
     "license": "(MIT OR Apache-2.0)",
