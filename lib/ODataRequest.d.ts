@@ -10,6 +10,7 @@ export declare class ODataRequest<T> {
     select(...props: string[]): ODataRequest<T>;
     expand(...props: string[]): ODataRequest<T>;
     filter(filter: string): ODataRequest<T>;
+    body(body: Partial<T>): ODataRequest<T>;
     execute(): Promise<ODataResponse<T>>;
     cancel(message?: string): void;
 }

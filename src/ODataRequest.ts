@@ -33,17 +33,34 @@ export class ODataRequest<T> {
     }
 
     public select(...props: string[]): ODataRequest<T> {
+        if (this.config.method !== "GET") {
+            throw Error("Invalid request method for 'select'");
+        }
         this.config.params.$select = props.join(",");
         return this;
     }
 
     public expand(...props: string[]): ODataRequest<T> {
+        if (this.config.method !== "GET") {
+            throw Error("Invalid request method for 'expand'");
+        }
         this.config.params.$expand = props.join(",");
         return this;
     }
 
     public filter(filter: string): ODataRequest<T> {
+        if (this.config.method !== "GET") {
+            throw Error("Invalid request method for 'filter'");
+        }
         this.config.params.$filter = filter;
+        return this;
+    }
+
+    public body(body: Partial<T>): ODataRequest<T> {
+        if (this.config.method !== "POST" && this.config.method !== "PUT") {
+            throw Error("Invalid request method for 'body'");
+        }
+        this.config.data = body;
         return this;
     }
 
