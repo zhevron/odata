@@ -13,7 +13,7 @@ export class ODataResponse<T> {
         let entity = {} as T; // tslint:disable-line:prefer-const
         Object.keys(data)
             .filter((key) => !key.startsWith("@odata"))
-            .forEach((key: keyof T) => entity[key] = data[key]);
+            .forEach((key) => entity[key as keyof T] = data[key]);
         return entity;
     }
 

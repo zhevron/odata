@@ -1,8 +1,8 @@
 import { AxiosResponse } from "axios";
 export declare class ODataResponse<T> {
-    private static getMetadata(data);
-    private static getEntity<T>(data);
-    private static getEntities<T>(data);
+    private static getMetadata;
+    private static getEntity;
+    private static getEntities;
     readonly status: number;
     readonly headers: Map<string, string>;
     readonly metadata: Map<string, any>;
