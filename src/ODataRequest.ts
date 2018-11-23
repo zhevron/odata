@@ -56,6 +56,17 @@ export class ODataRequest<T> {
         return this;
     }
 
+    public ref(nevigationProperty: string, entity: string, id: number | string): ODataRequest<T> {
+        if (this.config.method !== "POST" && this.config.method !== "PUT") {
+            throw Error("Invalid request method for 'ref'");
+        }
+        this.config.url = `${this.config.url}/${nevigationProperty}/$ref`;
+        this.config.data = {
+            "@odata.id": `${this.config.baseURL}/${entity}(${id})`,
+        };
+        return this;
+    }
+
     public body(body: Partial<T>): ODataRequest<T> {
         if (this.config.method !== "POST" && this.config.method !== "PUT") {
             throw Error("Invalid request method for 'body'");
