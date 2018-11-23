@@ -18,13 +18,13 @@ export class ODataClient {
         return new ODataRequest(this, this.defaultRequestConfig, "GET", entity, id);
     }
 
-    /*post<T = any>(entity: string, id?: number | string): ODataRequest<T> {
-        return new ODataRequest(this, this.defaultRequestConfig, 'POST', entity, id);
-    }*/
+    public post<T = any>(entity: string, id?: number | string): ODataRequest<T> {
+        return new ODataRequest(this, this.defaultRequestConfig, "POST", entity, id);
+    }
 
-    /*put<T = any>(entity: string, id: number | string): ODataRequest<T> {
-        return new ODataRequest(this, this.defaultRequestConfig, 'PUT', entity, id);
-    }*/
+    public put<T = any>(entity: string, id: number | string): ODataRequest<T> {
+        return new ODataRequest(this, this.defaultRequestConfig, "PUT", entity, id);
+    }
 
     public async execute<T = any>(request: ODataRequest<T>): Promise<ODataResponse<T>> {
         try {
