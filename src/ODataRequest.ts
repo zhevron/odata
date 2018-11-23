@@ -61,8 +61,14 @@ export class ODataRequest<T> {
             throw Error("Invalid request method for 'ref'");
         }
         this.config.url = `${this.config.url}/${nevigationProperty}/$ref`;
+        let entityUrl = `${origin}${this.config.baseURL}/${entity}(${id})`;
+        if (entityUrl.indexOf("http://") === -1 && entityUrl.indexOf("https://") === -1) {
+            if (window != null) {
+                entityUrl = window.location.origin + entityUrl;
+            }
+        }
         this.config.data = {
-            "@odata.id": `${this.config.baseURL}/${entity}(${id})`,
+            "@odata.id": entityUrl,
         };
         return this;
     }
