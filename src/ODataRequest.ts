@@ -74,7 +74,7 @@ export class ODataRequest<T> {
     }
 
     public body(body: Partial<T>): ODataRequest<T> {
-        if (this.config.method !== "POST" && this.config.method !== "PUT") {
+        if (this.config.method !== "PATCH" && this.config.method !== "POST" && this.config.method !== "PUT") {
             throw Error("Invalid request method for 'body'");
         }
         this.config.data = body;

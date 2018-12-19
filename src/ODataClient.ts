@@ -18,6 +18,10 @@ export class ODataClient {
         return new ODataRequest(this, this.defaultRequestConfig, "GET", entity, id);
     }
 
+    public patch<T = any>(entity: string, id: number | string): ODataRequest<T> {
+        return new ODataRequest(this, this.defaultRequestConfig, "PATCH", entity, id);
+    }
+
     public post<T = any>(entity: string, id?: number | string): ODataRequest<T> {
         return new ODataRequest(this, this.defaultRequestConfig, "POST", entity, id);
     }
