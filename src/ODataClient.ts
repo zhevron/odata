@@ -14,6 +14,10 @@ export class ODataClient {
         };
     }
 
+    public get interceptors() {
+        return this.httpClient.interceptors;
+    }
+
     public get<T = any>(entity: string, id?: number | string): ODataRequest<T> {
         return new ODataRequest(this, this.defaultRequestConfig, "GET", entity, id);
     }
